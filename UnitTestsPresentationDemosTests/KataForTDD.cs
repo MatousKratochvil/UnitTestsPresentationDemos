@@ -6,7 +6,7 @@ using Xunit;
 
 namespace UnitTestsPresentationDemosTests
 {
-	public class Kata
+	public class KataForTDD
 	{
 		public IEnumerable<int> FactorOf(int number)
 		{
