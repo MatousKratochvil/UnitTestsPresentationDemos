@@ -16,37 +16,35 @@ namespace UnitTestsPresentationDemosTests
 			public class GetAll
 			{
 				[Fact]
-				public void WorkingAndShould()
+				public void Working_AsIt_Should()
 				{
 					// Arrange
-					var fakeRequest = new FakeRequest();
-					var fakeRepository = new FakeRepository();
-					var service = new Service(fakeRepository);
+					var stubRequest = new FakeRequest();
+					var stubRepository = new FakeRepository();
+					var service = new Service(stubRepository);
 
 					// Act
-					var list = service.GetAll(fakeRequest);
+					var list = service.GetAll(stubRequest);
 
 					// Assert
 					Assert.NotEmpty(list.Where(x => x.Text == "FAKE").ToList());
 				}
 
 				[Fact]
-				public void WorkingAndShouldNot()
+				public void Working_But_ShouldNot()
 				{
 					// Arrange
-					var fakeRequest = new FakeRequest();
-					var fakeRepository = new FakeRepository();
-					var service = new Service(fakeRepository);
+					var stubRequest = new FakeRequest();
+					var stubRepository = new FakeRepository();
+					var service = new Service(stubRepository);
 
 					// Act
-					var list = service.GetAllWrong(fakeRequest);
+					var list = service.GetAllWrong(stubRequest);
 
 					// Assert
 					Assert.NotEmpty(list.Where(x => x.Text == "FAKE").ToList());
 				}
 			}
-
-
 		}
 
 	}

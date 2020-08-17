@@ -25,7 +25,7 @@ namespace UnitTestsPresentationDemosTests
 				int sum = service.Addition(numberOne, numberTwo);
 
 				// Assert
-				Assert.Equal(sum, 15 + 15);
+				Assert.Equal(15 + 15, sum);
 			}
 
 			[Fact]
@@ -41,7 +41,23 @@ namespace UnitTestsPresentationDemosTests
 				int sum = service.Addition(numberOne, numberTwo);
 
 				// Assert
-				Assert.Equal(sum, 15);
+				Assert.Equal(15, sum);
+			}
+
+			[Fact]
+			public void HowItWorks_ExceptionHandeling()
+			{
+				// Arrange
+				int numberOne = 15;
+				int numberTwo = 15;
+
+				var service = new Service();
+
+				// Act
+				var exception = Assert.Throws<InvalidOperationException>(() => service.AdditionThrowException(numberOne, numberTwo));
+
+				// Assert
+				Assert.Equal("EXCEPTION", exception.Message);
 			}
 		}
 
@@ -63,7 +79,7 @@ namespace UnitTestsPresentationDemosTests
 					int sum = service.Addition(numberOne, numberTwo);
 
 					// Assert
-					Assert.Equal(sum, numberOne + numberTwo);
+					Assert.Equal(numberOne + numberTwo, sum);
 				}
 
 				[Theory]
@@ -77,7 +93,7 @@ namespace UnitTestsPresentationDemosTests
 					int sum = service.Addition(numberOne, numberTwo);
 
 					// Assert
-					Assert.Equal(sum, numberOne * numberTwo);
+					Assert.Equal(numberOne * numberTwo, sum);
 				}
 			}
 
@@ -94,7 +110,7 @@ namespace UnitTestsPresentationDemosTests
 					int sum = service.Addition(numberOne, numberTwo);
 
 					// Assert
-					Assert.Equal(sum, numberOne + numberTwo);
+					Assert.Equal(numberOne + numberTwo, sum);
 				}
 
 
@@ -115,7 +131,6 @@ namespace UnitTestsPresentationDemosTests
 
 			public class MemberData_Attribute
 			{
-
 				[Theory]
 				[MemberData(nameof(GetNumbers))]
 				public void HowItWorksTheory_Working(int numberOne, int numberTwo)
@@ -127,9 +142,8 @@ namespace UnitTestsPresentationDemosTests
 					int sum = service.Addition(numberOne, numberTwo);
 
 					// Assert
-					Assert.Equal(sum, numberOne + numberTwo);
+					Assert.Equal(numberOne + numberTwo, sum);
 				}
-
 
 				public static IEnumerable<object[]> GetNumbers()
 				{
@@ -140,6 +154,52 @@ namespace UnitTestsPresentationDemosTests
 					yield return new object[] { 7, 1 };
 					yield return new object[] { 16, 17 };
 				}
+
+				[Theory]
+				[MemberData(nameof(TestDataGenerator.GetEvenNumbers), MemberType = typeof(TestDataGenerator))]
+				public void HowItWorksTheoryEvenDataFromClass_Working(int numberOne, int numberTwo)
+				{
+					// Arrange
+					var service = new Service();
+
+					// Act
+					int sum = service.Addition(numberOne, numberTwo);
+
+					// Assert
+					Assert.Equal(numberOne + numberTwo, sum);
+				}
+
+				[Theory]
+				[MemberData(nameof(TestDataGenerator.GetOddNumbers), MemberType = typeof(TestDataGenerator))]
+				public void HowItWorksTheoryOddDataFromClass_Working(int numberOne, int numberTwo)
+				{
+					// Arrange
+					var service = new Service();
+
+					// Act
+					int sum = service.Addition(numberOne, numberTwo);
+
+					// Assert
+					Assert.Equal(numberOne + numberTwo, sum);
+				}
+
+				public class TestDataGenerator
+				{
+					public static IEnumerable<object[]> GetEvenNumbers()
+					{
+						yield return new object[] { 2, 4 };
+						yield return new object[] { 6, 8 };
+						yield return new object[] { 10, 12 };
+					}
+
+					public static IEnumerable<object[]> GetOddNumbers()
+					{
+						yield return new object[] { 1, 3 };
+						yield return new object[] { 5, 7 };
+						yield return new object[] { 9, 11 };
+					}
+				}
+
 			}
 
 		}

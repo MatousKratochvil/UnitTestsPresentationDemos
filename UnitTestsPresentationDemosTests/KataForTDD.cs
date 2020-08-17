@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Microsoft.VisualBasic;
+
 using Xunit;
 
 namespace UnitTestsPresentationDemosTests
@@ -12,7 +14,6 @@ namespace UnitTestsPresentationDemosTests
 		{
 			var factorList = new List<int>();
 
-
 			return factorList;
 		}
 
@@ -20,8 +21,6 @@ namespace UnitTestsPresentationDemosTests
 		[Fact]
 		public void FactorOfTest()
 		{
-
 		}
-
 	}
 }
