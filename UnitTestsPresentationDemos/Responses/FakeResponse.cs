@@ -4,8 +4,8 @@ using System.Text;
 
 namespace UnitTestsPresentationDemos.Responses
 {
-	public class Response
+	public class FakeResponse : Response
 	{
-		public virtual string Text { get; set; } = "Response Text";
+		public override string Text { get; set; } = "FAKE";
 	}
 }

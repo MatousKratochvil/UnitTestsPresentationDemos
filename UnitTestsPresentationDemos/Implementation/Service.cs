@@ -22,6 +22,8 @@ namespace UnitTestsPresentationDemos.Implementation
 
 		public IEnumerable<Response> GetAll(Request request) => repository.GetAll(request);
 
+		public IEnumerable<Response> GetAllWrong(Request request) => new List<Response> { new FakeResponse() };
+
 		public Response Save(Request request) => repository.Save(request);
 
 		public int Addition(int x, int y) => x + y;

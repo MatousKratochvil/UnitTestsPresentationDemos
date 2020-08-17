@@ -4,8 +4,8 @@ using System.Text;
 
 namespace UnitTestsPresentationDemos.Requests
 {
-	public class Request
+	public class FakeRequest : Request
 	{
-		public virtual string Text { get; set; } = "Request Text";
+		public override string Text { get; set; } = "FAKE";
 	}
 }
