@@ -1,5 +1,6 @@
 ﻿
 using System.Linq;
+using System.Threading.Tasks;
 
 using UnitTestsPresentationDemos.Implementation;
 using UnitTestsPresentationDemos.Requests;
@@ -11,17 +12,31 @@ namespace UnitTestsPresentationDemosTests
 	public class IntegrationTest
 	{
 		[Fact]
-		public void ServiceRepositoryIntegration()
+		public async Task ServiceRepositoryIntegrationOrUnit()
 		{
 			// Arrange
-			var repository = new IntegrationRepository();
+			var repository = new IsItUnitOrIntegrationRepository();
 			var service = new IntegrationService(repository);
 
 			// Act
-			var response = service.GetAll(new Request());
+			var response = await service.GetAllAsync(new Request());
 
 			// Assert
-			Assert.Equal(100, response.Count());
+			Assert.Equal(10, response.Count());
+		}
+
+		[Fact]
+		public async Task ServiceRepositoryUnitOrIntegration()
+		{
+			// Arrange
+			var repository = new IsItIntegrationOrUnitRepository();
+			var service = new IntegrationService(repository);
+
+			// Act
+			var response = await service.GetAllAsync(new Request());
+
+			// Assert
+			Assert.Equal(10, response.Count());
 		}
 	}
 }

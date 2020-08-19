@@ -8,10 +8,10 @@ using UnitTestsPresentationDemos.Responses;
 
 namespace UnitTestsPresentationDemos.Abstraction
 {
-	public interface IRepository
+	public interface IRepositoryAsync
 	{
-		Response Save(Request request);
+		Task<Response> SaveAsync(Request request);
 
-		IEnumerable<Response> GetAll(Request request);
+		Task<IEnumerable<Response>> GetAllAsync(Request request);
 	}
 }
