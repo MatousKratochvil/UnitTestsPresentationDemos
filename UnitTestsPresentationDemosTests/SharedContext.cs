@@ -8,9 +8,9 @@ namespace UnitTestsPresentationDemosTests
 {
 	public class SharedContext
 	{
-        public class DatabaseFixture : IDisposable
+        public class StackFixture : IDisposable
         {
-			public DatabaseFixture()
+			public StackFixture()
 			{
 				Db = new Stack<int>();
 			}
@@ -20,11 +20,11 @@ namespace UnitTestsPresentationDemosTests
 			public Stack<int> Db { get; private set; }
         }
 
-        public class MyDatabaseTests : IClassFixture<DatabaseFixture>
+        public class StackFixtureTest : IClassFixture<StackFixture>
         {
-            DatabaseFixture fixture;
+			readonly StackFixture fixture;
 
-            public MyDatabaseTests(DatabaseFixture fixture)
+            public StackFixtureTest(StackFixture fixture)
             {
                 this.fixture = fixture;
             }

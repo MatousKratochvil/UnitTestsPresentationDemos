@@ -13,7 +13,7 @@ namespace UnitTestsPresentationDemosTests
 		public class Fact_Attribute
 		{
 			[Fact]
-			public void HowItWorks_Working()
+			public void Addition_ValidInputs_ReturnSum()
 			{
 				// Arrange
 				int numberOne = 15;
@@ -22,39 +22,23 @@ namespace UnitTestsPresentationDemosTests
 				var service = new Service();
 
 				// Act
-				int sum = service.Addition(numberOne, numberTwo);
+				int sum = service.AddNonNegativeNumbers(numberOne, numberTwo);
 
 				// Assert
 				Assert.Equal(15 + 15, sum);
 			}
 
 			[Fact]
-			public void HowItWorks_Failing()
+			public void Addition_InvalidInput_ThrowException()
 			{
 				// Arrange
-				int numberOne = 15;
+				int numberOne = -15;
 				int numberTwo = 15;
 
 				var service = new Service();
 
 				// Act
-				int sum = service.Addition(numberOne, numberTwo);
-
-				// Assert
-				Assert.Equal(15, sum);
-			}
-
-			[Fact]
-			public void HowItWorks_ExceptionHandeling()
-			{
-				// Arrange
-				int numberOne = 15;
-				int numberTwo = 15;
-
-				var service = new Service();
-
-				// Act
-				var exception = Assert.Throws<InvalidOperationException>(() => service.AdditionThrowException(numberOne, numberTwo));
+				var exception = Assert.Throws<InvalidOperationException>(() => service.AddNonNegativeNumbers(numberOne, numberTwo));
 
 				// Assert
 				Assert.Equal("EXCEPTION", exception.Message);
@@ -70,30 +54,16 @@ namespace UnitTestsPresentationDemosTests
 				[InlineData(50, 5)]
 				[InlineData(80, 897)]
 				[InlineData(13215, 564564)]
-				public void HowItWorksTheory_Working(int numberOne, int numberTwo)
+				public void Addition_ValidInputs_ReturnSum(int numberOne, int numberTwo)
 				{
 					// Arrange
 					var service = new Service();
 
 					// Act
-					int sum = service.Addition(numberOne, numberTwo);
+					int sum = service.AddNonNegativeNumbers(numberOne, numberTwo);
 
 					// Assert
 					Assert.Equal(numberOne + numberTwo, sum);
-				}
-
-				[Theory]
-				[InlineData(15, 15)]
-				public void HowItWorksTheory_Failing(int numberOne, int numberTwo)
-				{
-					// Arrange
-					var service = new Service();
-
-					// Act
-					int sum = service.Addition(numberOne, numberTwo);
-
-					// Assert
-					Assert.Equal(numberOne * numberTwo, sum);
 				}
 			}
 
@@ -101,13 +71,13 @@ namespace UnitTestsPresentationDemosTests
 			{
 				[Theory]
 				[ClassData(typeof(TestDataGenerator))]
-				public void HowItWorksThepry_Working(int numberOne, int numberTwo)
+				public void Addition_ValidInputs_ReturnSum(int numberOne, int numberTwo)
 				{
 					// Arrange
 					var service = new Service();
 
 					// Act
-					int sum = service.Addition(numberOne, numberTwo);
+					int sum = service.AddNonNegativeNumbers(numberOne, numberTwo);
 
 					// Assert
 					Assert.Equal(numberOne + numberTwo, sum);
@@ -133,13 +103,13 @@ namespace UnitTestsPresentationDemosTests
 			{
 				[Theory]
 				[MemberData(nameof(GetNumbers))]
-				public void HowItWorksTheory_Working(int numberOne, int numberTwo)
+				public void Addition_ValidInputs_ReturnSum(int numberOne, int numberTwo)
 				{
 					// Arrange
 					var service = new Service();
 
 					// Act
-					int sum = service.Addition(numberOne, numberTwo);
+					int sum = service.AddNonNegativeNumbers(numberOne, numberTwo);
 
 					// Assert
 					Assert.Equal(numberOne + numberTwo, sum);
@@ -157,13 +127,13 @@ namespace UnitTestsPresentationDemosTests
 
 				[Theory]
 				[MemberData(nameof(TestDataGenerator.GetEvenNumbers), MemberType = typeof(TestDataGenerator))]
-				public void HowItWorksTheoryEvenDataFromClass_Working(int numberOne, int numberTwo)
+				public void Addition_ValidEvenInputs_ReturnSum(int numberOne, int numberTwo)
 				{
 					// Arrange
 					var service = new Service();
 
 					// Act
-					int sum = service.Addition(numberOne, numberTwo);
+					int sum = service.AddNonNegativeNumbers(numberOne, numberTwo);
 
 					// Assert
 					Assert.Equal(numberOne + numberTwo, sum);
@@ -171,13 +141,13 @@ namespace UnitTestsPresentationDemosTests
 
 				[Theory]
 				[MemberData(nameof(TestDataGenerator.GetOddNumbers), MemberType = typeof(TestDataGenerator))]
-				public void HowItWorksTheoryOddDataFromClass_Working(int numberOne, int numberTwo)
+				public void Addition_ValidOddInputs_ReturnSum(int numberOne, int numberTwo)
 				{
 					// Arrange
 					var service = new Service();
 
 					// Act
-					int sum = service.Addition(numberOne, numberTwo);
+					int sum = service.AddNonNegativeNumbers(numberOne, numberTwo);
 
 					// Assert
 					Assert.Equal(numberOne + numberTwo, sum);

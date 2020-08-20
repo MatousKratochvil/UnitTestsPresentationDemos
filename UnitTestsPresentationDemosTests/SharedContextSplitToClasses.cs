@@ -6,11 +6,11 @@ using Xunit;
 
 namespace UnitTestsPresentationDemosTests
 {
-	public class SharedContextOrdered
+	public class SharedContextSplitToClasses
 	{
-        public class DatabaseFixture : IDisposable
+        public class StackFixture : IDisposable
         {
-            public DatabaseFixture()
+            public StackFixture()
             {
                 Db = new Stack<int>();
             }
@@ -20,20 +20,20 @@ namespace UnitTestsPresentationDemosTests
             public Stack<int> Db { get; private set; }
         }
 
-        [CollectionDefinition("Database collection")]
-        public class DatabaseCollection : ICollectionFixture<DatabaseFixture>
+        [CollectionDefinition("Stack collection")]
+        public class StackCollection : ICollectionFixture<StackFixture>
         {
             // This class has no code, and is never created. Its purpose is simply
             // to be the place to apply [CollectionDefinition] and all the
             // ICollectionFixture<> interfaces.
         }
 
-        [Collection("Database collection")]
-        public class DatabaseTestClass1
+        [Collection("Stack collection")]
+        public class StackTestClass1
         {
-            DatabaseFixture fixture;
+			readonly StackFixture fixture;
 
-            public DatabaseTestClass1(DatabaseFixture fixture)
+            public StackTestClass1(StackFixture fixture)
             {
                 this.fixture = fixture;
             }
@@ -49,12 +49,12 @@ namespace UnitTestsPresentationDemosTests
             }
         }
 
-        [Collection("Database collection")]
-        public class DatabaseTestClass2
+        [Collection("Stack collection")]
+        public class StackTestClass2
         {
-            DatabaseFixture fixture;
+			readonly StackFixture fixture;
 
-            public DatabaseTestClass2(DatabaseFixture fixture)
+            public StackTestClass2(StackFixture fixture)
             {
                 this.fixture = fixture;
             }

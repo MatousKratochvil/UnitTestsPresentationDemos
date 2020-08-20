@@ -16,7 +16,7 @@ namespace UnitTestsPresentationDemosTests
 			public class GetAll
 			{
 				[Fact]
-				public void Working_AsIt_Should()
+				public void Service_ValidInput_ReturnCollection()
 				{
 					// Arrange
 					var stubRequest = new FakeRequest();
@@ -31,7 +31,7 @@ namespace UnitTestsPresentationDemosTests
 				}
 
 				[Fact]
-				public void Working_But_ShouldNot()
+				public void Service_ValidInput_ReturnCollection_WithoutInnerCall()
 				{
 					// Arrange
 					var stubRequest = new FakeRequest();
@@ -39,7 +39,7 @@ namespace UnitTestsPresentationDemosTests
 					var service = new Service(stubRepository);
 
 					// Act
-					var list = service.GetAllWrong(stubRequest);
+					var list = service.GetAllRepositoryNotCalled(stubRequest);
 
 					// Assert
 					Assert.NotEmpty(list.Where(x => x.Text == "FAKE").ToList());
