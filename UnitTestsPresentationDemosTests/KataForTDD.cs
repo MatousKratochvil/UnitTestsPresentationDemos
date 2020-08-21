@@ -6,9 +6,12 @@ using Xunit;
 
 namespace UnitTestsPresentationDemosTests
 {
+	// KATA (Problem) can be found at http://www.butunclebob.com/ArticleS.UncleBob.ThePrimeFactorsKata
+	// I personaly have it from presentation by Robert C. Martin (Uncle Bob)
+
 	public class KataForTDD
 	{
-		public IEnumerable<int> PrimeFactor()
+		public IEnumerable<int> PrimeFactor(int number)
 		{
 			var primes = new List<int>();
 

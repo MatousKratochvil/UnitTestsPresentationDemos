@@ -7,6 +7,9 @@ using Xunit;
 
 namespace UnitTestsPresentationDemosTests
 {
+	// KATA (Problem) can be found at http://www.butunclebob.com/ArticleS.UncleBob.ThePrimeFactorsKata
+	// I personaly have it from presentation by Robert C. Martin (Uncle Bob)
+
 	public class KataForTDDFinal
 	{
 		public IEnumerable<int> PrimeFactor(int number)
@@ -30,6 +33,7 @@ namespace UnitTestsPresentationDemosTests
 			Testing.Equivalent(List(2, 3), PrimeFactor(6));
 			Testing.Equivalent(List(2, 2, 2), PrimeFactor(8));
 			Testing.Equivalent(List(3, 3), PrimeFactor(9));
+			Testing.Equivalent(List(5, 3, 2, 5, 11), PrimeFactor(5 * 3 * 2 * 5 * 11));
 		}
 
 		private static List<int> List(params int[] arr)
